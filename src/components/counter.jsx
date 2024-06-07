@@ -1,23 +1,46 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
-export default class Counter extends Component {
-  state = { 
+class Counter extends Component {
+  state = {
     count: 0,
   };
-  style={
-    fontSize:30
-  }
+  style = {
+    fontSize: 30,
+  };
+  // constructor(){
+  //   super();
+  //   this.handleIncrement=this.handleIncrement.bind(this);
+  // }
+  handleIncrement = () => {
+  this.setState({count:this.state.count+1})
+  
+  };
+
   render() {
     return (
       <div>
-        <span style={this.style} className="badge badge-primary m-2">{this.formatCount()}</span>
-        <button className="btn btn-secondary btn-sm m-2">increment</button>
+        <span style={this.style} className={this.getBadge()}>
+          {this.formatCount()}
+        </span>
+        <button
+          onClick={this.handleIncrement}
+          className="btn btn-secondary btn-sm m-2"
+        >
+          increment
+        </button>
       </div>
     );
   }
-  formatCount(){
-    const {count}= this.state;
-    return count===0?"Zero" :count;
+  getBadge() {
+    let classes = "badge m-2 badge-";
+    classes += this.state.count === 0 ? "warning" : "primary";
+    return classes;
+  }
+
+  formatCount() {
+    const { count } = this.state;
+    return count === 0 ? "Zero" : count;
   }
 }
+export default Counter;
