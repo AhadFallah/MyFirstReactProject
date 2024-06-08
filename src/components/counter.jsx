@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 class Counter extends Component {
   state = {
-    count: 0,
+    count: this.props.counter.value,
   };
   style = {
     fontSize: 30,
@@ -29,6 +29,7 @@ class Counter extends Component {
         >
           increment
         </button>
+        <button className="btn btn-danger m-2 btn-sm" onClick={()=>this.props.onDelete(this.props.counter.id)}>Delete</button>
       </div>
     );
   }
